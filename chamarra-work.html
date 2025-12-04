@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamarra Workwear Arena</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Chamarra Workwear Arena</h1>
+    </header>
+
+    <main>
+        <a href="index.html#sueteres" class="back-link">← Volver a abrigos</a>
+
+        <div class="product-detail-layout">
+            
+            <div class="product-gallery">
+                <div class="gallery-main-image">
+                    <img src="images/IMG_6186.JPEG" alt="Foto principal" id="main-image">
+                </div>
+                <div class="gallery-thumbnails">
+                    <img src="images/IMG_6186.JPEG" alt="Vista frente" class="thumbnail" onclick="changeImage('images/IMG_6186.JPEG')">
+                    <img src="images/IMG_6188.JPEG" alt="Vista lado" class="thumbnail" onclick="changeImage('images/IMG_6188.JPEG')">
+                    <img src="images/IMG_6187.JPEG" alt="Vista detalle" class="thumbnail" onclick="changeImage('images/IMG_6187.JPEG')">
+                    </div>
+            </div>
+
+            <div class="product-info">
+                <p class="price-detail">$500.00 MXN</p>
+                
+                <h3>Descripción</h3>
+                <p>Chamarra con capucha estilo workwear, confeccionada en lona de algodón resistente 
+                    color arena y acabados desgastados que le dan un carácter robusto y auténtico</p>
+
+                <h3>Marca</h3>
+                <p>Reserved</p>
+
+          
+                <h3>Tallas Disponibles</h3>
+                <p class="sizes-detail">M</p>
+                
+                <a href="https://wa.me/525643361487?text=Hola,%20me%20interesa%20comprar%20el%20Chamarra%20workwear" 
+   class="buy-button" 
+   target="_blank">
+   Comprar por WhatsApp 💬
+</a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© Catalogo 2025</p>
+    </footer>
+
+    <script>
+        function changeImage(newSrc) {
+            document.getElementById('main-image').src = newSrc;
+        }
+    </script>
+
+</body>
+</html>

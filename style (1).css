@@ -1,0 +1,427 @@
+/* =================================
+/* =================================
+   PALETA "ESMERALDA MATTE"
+   ================================= */
+:root {
+  --color-primario: #132a13;    /* Verde muy oscuro */
+  --color-primario-hover: #31572c;
+  --color-fondo: #E3DAC9;       /* FONDO PRINCIPAL: Verde Pizarra (Grisáceo) */
+  --color-fondo-tarjeta: #132a13; /* TARJETAS: Verde Eucalipto */
+  
+  --color-acento: #e69244;      /* Ámbar / Bronce brillante */
+  
+  --color-texto-principal: #ffffff;
+  --color-texto-claro: #ffffff;
+  --color-bordes: #84a98c;
+}
+/* =================================
+   ESTILOS GENERALES
+   ================================= */
+body {
+    /* Aquí aplicamos la fuente de texto normal */
+    font-family: 'Open Sans', sans-serif; 
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+}
+
+/* Nueva regla para que todos los títulos usen la fuente moderna */
+h1, h2, h3, .navbar, .buy-button {
+    font-family: 'Montserrat', sans-serif;
+}
+header {
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
+    text-align: center;
+    padding: 20px 0;
+}
+header h1 { margin: 0; }
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
+    margin-top: 40px;
+}
+
+/* =================================
+   MENÚ DE NAVEGACIÓN (RESPONSIVO)
+   ================================= */
+html {
+    scroll-padding-top: 70px;
+}
+
+.navbar {
+    background-color: var(--color-primario);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 60px;
+    display: flex;
+    justify-content: space-between; /* Separa logo y enlaces */
+    align-items: center;
+}
+
+.nav-logo {
+    color: var(--color-texto-claro);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Estilos de los enlaces en Escritorio */
+.nav-links a {
+    color: var(--color-texto-claro);
+    text-decoration: none;
+    padding: 10px 15px;
+    font-size: 1em;
+    margin-left: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.nav-links a:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* Botones del menú móvil (ocultos en escritorio) */
+.hamburger, .close-btn {
+    display: none; /* Por defecto no se ven */
+    background: none;
+    border: none;
+    color: var(--color-texto-claro);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* =================================
+   VERSIÓN MÓVIL (Media Query)
+   Cuando la pantalla sea menor a 768px (tablets y celulares)
+   ================================= */
+@media (max-width: 768px) {
+
+    /* Mostrar el botón de hamburguesa */
+    .hamburger {
+        display: block;
+    }
+
+    /* El contenedor de enlaces se convierte en menú lateral */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Escondido a la derecha fuera de la pantalla */
+        height: 100vh; /* Alto completo */
+        width: 250px;  /* Ancho del menú lateral */
+        background-color: var(--color-primario); /* Mismo color que el header */
+        flex-direction: column;
+        padding-top: 60px;
+        box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+        transition: right 0.3s ease; /* Animación suave al entrar */
+        display: flex;
+        align-items: center; /* Centra los textos */
+    }
+
+    /* Clase activa para mostrar el menú */
+    .nav-links.active {
+        right: 0; /* Lo trae a la pantalla */
+    }
+
+    /* Estilo de los enlaces dentro del menú móvil */
+    .nav-links a {
+        margin: 10px 0;
+        width: 80%; /* Botones anchos */
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    /* Botón de cerrar (X) */
+    .close-btn {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+    }
+}
+/* =================================
+   CATÁLOGO (PÁGINA PRINCIPAL)
+   ================================= */
+.category h2 {
+    font-size: 2em;
+    border-bottom: 2px solid var(--color-bordes);
+    padding-bottom: 10px;
+    margin-top: 40px;
+}
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+.product-link {
+    text-decoration: none;
+    color: inherit;
+}
+.product-card {
+    background-color: var(--color-fondo-tarjeta);
+    border: 1px solid var(--color-bordes);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 280px;
+    transition: transform 0.2s;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+}
+.product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.product-card h3 {
+    font-size: 1.2em;
+    margin: 15px;
+}
+.product-card .sizes {
+    margin: 0 15px;
+    font-style: italic;
+    color: #555;
+}
+.product-card .price {
+    margin: 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--color-acento);
+}
+
+/* =================================
+   PÁGINA DE DETALLE (CON GALERÍA NUEVA)
+   ================================= */
+.back-link {
+    display: inline-block;
+    margin: 20px 0;
+    font-size: 1.1em;
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: bold;
+}
+.back-link:hover { text-decoration: underline; }
+
+/* Layout de la página de detalle */
+.product-detail-layout {
+    display: flex;
+    flex-wrap: wrap; /* En móviles se pone uno debajo de otro */
+    gap: 40px;
+    background-color: var(--color-fondo-tarjeta);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* (NUEVO) Galería de fotos */
+.product-gallery {
+    flex: 1.2; /* Le da un poco más de espacio a la galería */
+    min-width: 300px;
+}
+.gallery-main-image img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--color-bordes);
+    height: auto;
+}
+.gallery-thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap; /* Si son muchas, bajan a la siguiente línea */
+}
+.gallery-thumbnails img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid var(--color-bordes);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+.gallery-thumbnails img:hover {
+    border-color: var(--color-acento);
+}
+
+/* (NUEVO) Info del producto */
+.product-info {
+    flex: 1; /* Ocupa el espacio restante */
+    min-width: 300px;
+}
+.product-info h2 { /* Nombre del producto */
+    font-size: 2.5em;
+    margin-top: 0;
+}
+.price-detail {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--color-acento);
+    margin-bottom: 20px;
+}
+.sizes-detail {
+    font-size: 1.2em;
+    font-style: italic;
+}
+.buy-button {
+    display: inline-block; /* IMPORTANTE: Para que respete el tamaño */
+    text-decoration: none; /* IMPORTANTE: Quita el subrayado del enlace */
+    text-align: center;
+    
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px; /* Bordes redondeados modernos */
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.buy-button:hover {
+    background-color: var(--color-primario-hover);
+    transform: translateY(-3px); /* Pequeño salto al pasar el mouse */
+}
+/* =================================
+   ESTILOS DE LA PORTADA (HERO)
+   ================================= */
+.hero {
+    /* Altura: 80vh significa el 80% de la altura de la pantalla */
+    height: 80vh; 
+    
+    /* Imagen de fondo con un filtro oscuro encima para que se lea el texto */
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/portada.jpg');
+    
+    background-size: cover; /* La imagen cubre todo el espacio */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* Efecto Parallax (la imagen se queda quieta al bajar) */
+    
+    /* Para centrar el texto perfectamente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 3.5em; /* Título gigante */
+    margin-bottom: 10px;
+    text-transform: uppercase; /* Todo en mayúsculas */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Sombra negra para leer mejor */
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* Botón de llamada a la acción */
+.cta-button {
+    background-color: var(--color-acento);
+    color: white;
+    padding: 15px 40px;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 30px; /* Bordes redondeados */
+    font-weight: bold;
+    transition: transform 0.3s, background-color 0.3s;
+    display: inline-block;
+}
+
+.cta-button:hover {
+    transform: scale(1.1); /* Crece un poco al pasar el mouse */
+    background-color: white;
+    color: var(--color-acento);
+}
+
+/* Ajuste para celulares */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2em; }
+    .hero p { font-size: 1.1em; }
+}
+@media (max-width: 768px) {
+    .hero {
+        /* ESTO ES FUNDAMENTAL para que el sistema operativo la cargue */
+        background-attachment: scroll; 
+    }
+}
+/* =================================
+   ESTILOS DE FILTRADO DE TALLAS
+   ================================= */
+.filter-bar {
+    text-align: center;
+    margin: 30px 0;
+    padding: 10px;
+    border-bottom: 1px solid var(--color-bordes);
+    border-top: 1px solid var(--color-bordes);
+}
+
+.filter-bar button {
+    background-color: transparent;
+    color: var(--color-texto-principal);
+    border: 1px solid var(--color-bordes);
+    padding: 8px 15px;
+    margin: 5px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.filter-bar button:hover {
+    background-color: var(--color-fondo);
+}
+
+/* Estilo para el botón activo */
+.filter-bar button.active {
+    background-color: var(--color-acento);
+    color: var(--color-texto-claro);
+    border-color: var(--color-acento);
+}
+
+/* Clase para ocultar los productos */
+.hidden {
+    display: none !important;
+}
+/* Asegura que las secciones se puedan ocultar/mostrar con el JS */
+.category {
+    transition: opacity 0.3s ease; /* Transición suave para el cambio */
+    /* El display: block se maneja desde el JavaScript */
+}
+/* =================================
+   AJUSTE PARA GRID DE 2 COLUMNAS EN MÓVIL
+   ================================= */
+@media (max-width: 768px) {
+    
+    /* 1. Las tarjetas deben ajustarse al 50% del ancho del contenedor.
+       Usamos calc(50% - 10px) para restar la mitad del espacio (gap: 20px) 
+       y asegurar que las dos tarjetas y el espacio quepan perfectamente. */
+    .product-link {
+        width: calc(50% - 10px); 
+    }
+    
+    /* 2. La tarjeta de producto debe llenar todo el espacio que le dio su enlace */
+    .product-card {
+        width: 100%;
+    }
+}
