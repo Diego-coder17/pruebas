@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargando producto...</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1 id="titulo-producto">...</h1>
+    </header>
+
+    <main>
+        <a href="index.html#abrigo" class="back-link" id="btn-volver">← Volver al catálogo</a>
+
+        <div class="product-detail-layout">
+            
+            <div class="product-gallery">
+                <div class="gallery-main-image">
+                    <img src="" alt="Foto principal" id="main-image">
+                </div>
+                <div class="gallery-thumbnails" id="galeria-contenedor">
+                    </div>
+            </div>
+
+            <div class="product-info">
+                <p class="price-detail" id="precio-producto"></p>
+                
+                <h3>Descripción</h3>
+                <p id="desc-producto"></p>
+
+                <h3>Marca</h3>
+                <p id="marca-producto"></p>
+
+                <h3>Tallas Disponibles</h3>
+                <p class="sizes-detail" id="tallas-producto"></p>
+                
+                <a href="#" class="buy-button" id="boton-whatsapp" target="_blank">
+                   Comprar por WhatsApp 💬
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>© Catalogo 2025</p>
+    </footer>
+
+    <script src="productos.js"></script>
+    <script>
+        // 1. Obtener el ID de la URL (ej: producto.html?id=chamarra-work-arena)
+        const params = new URLSearchParams(window.location.search);
+        const idBusqueda = params.get('id');
+
+        // 2. Buscar en tu base de datos
+        const producto = productos.find(p => p.id === idBusqueda);
+
+        if (producto) {
+            // 3. Rellenar la información
+            document.title = producto.nombre;
+            document.getElementById('titulo-producto').innerText = producto.nombre;
+            document.getElementById('main-image').src = producto.imagenPrincipal;
+            document.getElementById('precio-producto').innerText = `$${producto.precio.toFixed(2)} MXN`;
+            document.getElementById('desc-producto').innerText = producto.descripcion;
+            document.getElementById('marca-producto').innerText = producto.marca;
+            document.getElementById('tallas-producto').innerText = producto.tallas.join(", ");
+            
+            // Ajustar botón volver para que vaya a la sección correcta
+            document.getElementById('btn-volver').href = `index.html#${producto.categoria}`;
+
+            // Configurar WhatsApp
+            const mensaje = `Hola, me interesa comprar: ${producto.nombre}`;
+            document.getElementById('boton-whatsapp').href = `https://wa.me/525643361487?text=${encodeURIComponent(mensaje)}`;
+
+            // 4. Generar Galería
+            const galeriaDiv = document.getElementById('galeria-contenedor');
+            producto.imagenesGaleria.forEach(imgSrc => {
+                const thumb = document.createElement('img');
+                thumb.src = imgSrc;
+                thumb.className = 'thumbnail';
+                thumb.onclick = function() {
+                    document.getElementById('main-image').src = imgSrc;
+                };
+                galeriaDiv.appendChild(thumb);
+            });
+
+        } else {
+            // Si no encuentra el producto
+            document.querySelector('main').innerHTML = "<h2>Producto no encontrado :(</h2><a href='index.html' class='back-link'>Volver</a>";
+        }
+    </script>
+
+</body>
+</html>
